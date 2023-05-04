@@ -1,6 +1,7 @@
 import { CSSProperties, useEffect } from 'react';
 import 'phaser'
 import MainScene from './game/main';
+import MenuScene from './game/menu';
 
 // Phaserの設定
 const config: Phaser.Types.Core.GameConfig = {
@@ -19,7 +20,7 @@ const config: Phaser.Types.Core.GameConfig = {
 
   // ここで読み込むシーンを取得する
   // 今回は軽いテストなので、MainSceneのみ
-  scene: [MainScene],
+  scene: [MenuScene, MainScene],
 };
 
 /**

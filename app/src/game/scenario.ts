@@ -34,6 +34,8 @@ class MainScene extends Phaser.Scene {
   create(): void {
     console.log("create")
     this.add.text(10, 10, "Hello, phaser")
+    let title = this.add.text(1, 1, '脱出ゲームほげほげ');
+    title.setFontSize(64).setColor('#ffffff').setOrigin(0.5).setPadding(6).setInteractive();
   }
 
   /**

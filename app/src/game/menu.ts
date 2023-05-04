@@ -6,11 +6,11 @@ import 'phaser'
  * init⇒preload⇒create⇒update⇒update⇒...
  * のようなライフサイクルで動作する
  */
-class MainScene extends Phaser.Scene {
+class MenuScene extends Phaser.Scene {
   constructor() {
     super({
-      key: 'Main',
-      active: false 
+      key: 'Menu',
+      active: true
     })
   }
 
@@ -33,7 +33,26 @@ class MainScene extends Phaser.Scene {
    */
   create(): void {
     console.log("create")
-    this.add.text(10, 10, "Hello, phaser")
+
+    interface GameWindow {
+      width: number;
+      height: number
+    }
+
+    const gameWindow: GameWindow = {
+      width: this.sys.game.scale.gameSize.width/2,
+      height: this.sys.game.scale.gameSize.height/2,
+    }
+
+    let title = this.add.text(gameWindow.width, gameWindow.height, '脱出ゲームほげほげ');
+    title.setFontSize(64).setColor('#ffffff').setOrigin(0.5).setPadding(6).setInteractive();
+
+    
+
+    title.on('pointerdown', () =>
+    {
+      this.scene.start('Main', this);
+    }, this);
   }
 
   /**
@@ -43,4 +62,4 @@ class MainScene extends Phaser.Scene {
   }
 }
 
-export default MainScene
+export default MenuScene
