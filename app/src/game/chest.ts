@@ -1,5 +1,5 @@
 import 'phaser'
-import { windowConfig } from '../const/config'
+import { windowConfig, Room } from '../const/config'
 
 /**
  * メインシーン
@@ -7,11 +7,11 @@ import { windowConfig } from '../const/config'
  * init⇒preload⇒create⇒update⇒update⇒...
  * のようなライフサイクルで動作する
  */
-class MenuScene extends Phaser.Scene {
+class ChestScene extends Phaser.Scene {
   constructor() {
     super({
-      key: 'Menu',
-      active: true
+      key: 'Chest',
+      active: false 
     })
   }
 
@@ -19,26 +19,25 @@ class MenuScene extends Phaser.Scene {
    * 初期処理
    */
   init(): void {
-    console.log("init")
   }
 
   /**
    * アセットデータ読込などを行う処理
    */
   preload(): void {
-    console.log("preload")
+    this.load.image("chestUp", "./assets/room/chest_up.jpg");
   }
 
   /**
    * ゲーム画面の作成処理やイベントアクションを記述する処理
    */
   create(): void {
-    console.log("create")
+    const frontChest = this.add.sprite(0, 0, "chestUp").setOrigin(0).setInteractive();
 
-    const title = this.add.text(windowConfig.width/2, windowConfig.height/2, '脱出ゲームほげ');
-    title.setFontSize(64).setColor('#ffffff').setOrigin(0.5).setPadding(6).setInteractive();
+    const backbutton = this.add.text(windowConfig.width/2, windowConfig.height/2 + 200, '戻る');
+    backbutton.setFontSize(32).setColor('#ffffff').setOrigin(0.5).setPadding(6).setInteractive();
 
-    title.on('pointerdown', () =>
+    backbutton.on('pointerdown', () =>
     {
       this.scene.start('Main', this);
     }, this);
@@ -51,4 +50,4 @@ class MenuScene extends Phaser.Scene {
   }
 }
 
-export default MenuScene
+export default ChestScene

@@ -1,4 +1,5 @@
 import 'phaser'
+import { windowConfig, Room } from '../const/config'
 
 /**
  * メインシーン
@@ -6,10 +7,10 @@ import 'phaser'
  * init⇒preload⇒create⇒update⇒update⇒...
  * のようなライフサイクルで動作する
  */
-class MainScene extends Phaser.Scene {
+class DoorScene extends Phaser.Scene {
   constructor() {
     super({
-      key: 'Main',
+      key: 'Door',
       active: false 
     })
   }
@@ -18,24 +19,27 @@ class MainScene extends Phaser.Scene {
    * 初期処理
    */
   init(): void {
-    console.log("init")
   }
 
   /**
    * アセットデータ読込などを行う処理
    */
   preload(): void {
-    console.log("preload")
+    this.load.image("doorUp", "./assets/room/door_up.jpg");
   }
 
   /**
    * ゲーム画面の作成処理やイベントアクションを記述する処理
    */
   create(): void {
-    console.log("create")
-    this.add.text(10, 10, "Hello, phaser")
-    let title = this.add.text(1, 1, '脱出ゲームほげほげ');
-    title.setFontSize(64).setColor('#f0xcdcdcd').setOrigin(0.5).setPadding(6).setInteractive();
+    const frontDoor = this.add.sprite(0, 0, "doorUp").setOrigin(0).setInteractive();
+    const backbutton = this.add.text(windowConfig.width/2, windowConfig.height/2 + 200, '戻る');
+    backbutton.setFontSize(32).setColor('#ffffff').setOrigin(0.5).setPadding(6).setInteractive();
+
+    backbutton.on('pointerdown', () =>
+    {
+      this.scene.start('Main', this);
+    }, this);
   }
 
   /**
@@ -45,4 +49,4 @@ class MainScene extends Phaser.Scene {
   }
 }
 
-export default MainScene
+export default DoorScene

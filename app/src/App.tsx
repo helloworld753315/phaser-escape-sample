@@ -1,15 +1,20 @@
 import { CSSProperties, useEffect } from 'react';
 import 'phaser'
+import { windowConfig } from './const/config';
 import MainScene from './game/main';
 import MenuScene from './game/menu';
+import DoorScene from './game/door';
+import BedScene from './game/bed';
+import DeskScene from './game/desk';
+import ChestScene from './game/chest';
 
 // Phaserの設定
 const config: Phaser.Types.Core.GameConfig = {
-  width: 1280,
-  height: 720,
+  width: windowConfig.width,
+  height: windowConfig.height,
   type: Phaser.AUTO,
   pixelArt: false,
-  backgroundColor: 0xcdcdcd,
+  backgroundColor: windowConfig.backgroundColor,
 
   scale: {
     mode: Phaser.Scale.FIT,
@@ -20,7 +25,7 @@ const config: Phaser.Types.Core.GameConfig = {
 
   // ここで読み込むシーンを取得する
   // 今回は軽いテストなので、MainSceneのみ
-  scene: [MenuScene, MainScene],
+  scene: [MenuScene, MainScene, DoorScene, BedScene, DeskScene, ChestScene],
 };
 
 /**
