@@ -35,9 +35,6 @@ class DoorScene extends Phaser.Scene {
    */
   create(): void {
     const frontDoor = this.add.sprite(0, 0, "doorUp").setOrigin(0).setInteractive();
-    this.cameras.main.fadeIn(400, 0, 0, 0);
-    // const backbutton = this.add.text(windowConfig.width/2, windowConfig.height/2 + 200, '戻る');
-    // backbutton.setFontSize(32).setColor('#ffffff').setOrigin(0.5).setPadding(6).setInteractive();
     const backButton = new Button(windowConfig.width/2, windowConfig.height/2 + 200, '戻る', this);
   }
 

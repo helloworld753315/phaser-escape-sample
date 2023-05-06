@@ -20,6 +20,7 @@ class BedScene extends Phaser.Scene {
    * 初期処理
    */
   init(): void {
+    this.cameras.main.fadeIn(400, 0, 0, 0);
   }
 
   /**
