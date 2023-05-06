@@ -7,6 +7,8 @@
 `app/public/assets`内に`room`ディレクトリを作成し、その中に部屋の画像を配置
 
 以下roomディレクトリの中身。
+
+```
 .
 └── room
     ├── bed_up.jpg
@@ -14,6 +16,7 @@
     ├── desk_up.jpg
     ├── door_up.jpg
     └── main.jpg
+```
 
 
 
