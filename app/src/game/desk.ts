@@ -1,5 +1,6 @@
 import 'phaser'
 import { windowConfig, Room } from '../const/config'
+import { Button } from '../game/backbutton'
 
 /**
  * メインシーン
@@ -33,14 +34,7 @@ class DeskScene extends Phaser.Scene {
    */
   create(): void {
     const frontDesk = this.add.sprite(0, 0, "deskUp").setOrigin(0).setInteractive();
-
-    const backbutton = this.add.text(windowConfig.width/2, windowConfig.height/2 + 200, '戻る');
-    backbutton.setFontSize(32).setColor('#ffffff').setOrigin(0.5).setPadding(6).setInteractive();
-
-    backbutton.on('pointerdown', () =>
-    {
-      this.scene.start('Main', this);
-    }, this);
+    const backButton = new Button(windowConfig.width/2, windowConfig.height/2 + 200, '戻る', this);
   }
 
   /**

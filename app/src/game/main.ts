@@ -20,6 +20,7 @@ class MainScene extends Phaser.Scene {
    * 初期処理
    */
   init(): void {
+    this.cameras.main.fadeIn(400, 0, 0, 0);
   }
 
   /**
@@ -36,28 +37,33 @@ class MainScene extends Phaser.Scene {
     this.add.text(10, 10, "Hello, phaser");
     const mainRoom = this.add.sprite(0, 0, "mainRoom").setOrigin(0).setInteractive();
 
-    /*
-    let box = this.add.graphics()
-	  box.fillStyle(0xff7f50, 0.8).fillRect(720, 200, 260, 300).setInteractive();
-    const backbutton = this.add.text(windowConfig.width/2, windowConfig.height/2 + 200, '戻る');
-    backbutton.setFontSize(32).setColor('#ffffff').setOrigin(0.5).setPadding(6).setInteractive();
-    */
-
     mainRoom.on('pointerdown', (pointer: Phaser.Input.Pointer) =>
     {
-      console.log(`debug x: ${pointer.x}, y: ${pointer.y}`);
+      // console.log(`debug x: ${pointer.x}, y: ${pointer.y}`);
 
       if (checkHit(pointer.x, pointer.y, Room.door)){
-        this.scene.start('Door', this);
+        this.cameras.main.fadeOut(400, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+          this.scene.start('Door', this);
+        });
       }
       else if(checkHit(pointer.x, pointer.y, Room.bed)){
-        this.scene.start('Bed', this);
+        this.cameras.main.fadeOut(400, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+          this.scene.start('Bed', this);
+        });
       }
       else if(checkHit(pointer.x, pointer.y, Room.desk)){
-        this.scene.start('Desk', this);
+        this.cameras.main.fadeOut(400, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+          this.scene.start('Desk', this);
+        });
       }
       else if(checkHit(pointer.x, pointer.y, Room.chest)){
-        this.scene.start('Chest', this);
+        this.cameras.main.fadeOut(400, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+          this.scene.start('Chest', this);
+        });
       }
     });
   }

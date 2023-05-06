@@ -1,5 +1,6 @@
 import 'phaser'
 import { windowConfig, Room } from '../const/config'
+import { Button } from '../game/backbutton'
 
 /**
  * メインシーン
@@ -19,6 +20,7 @@ class DoorScene extends Phaser.Scene {
    * 初期処理
    */
   init(): void {
+    this.cameras.main.fadeIn(400, 0, 0, 0);
   }
 
   /**
@@ -33,13 +35,10 @@ class DoorScene extends Phaser.Scene {
    */
   create(): void {
     const frontDoor = this.add.sprite(0, 0, "doorUp").setOrigin(0).setInteractive();
-    const backbutton = this.add.text(windowConfig.width/2, windowConfig.height/2 + 200, '戻る');
-    backbutton.setFontSize(32).setColor('#ffffff').setOrigin(0.5).setPadding(6).setInteractive();
-
-    backbutton.on('pointerdown', () =>
-    {
-      this.scene.start('Main', this);
-    }, this);
+    this.cameras.main.fadeIn(400, 0, 0, 0);
+    // const backbutton = this.add.text(windowConfig.width/2, windowConfig.height/2 + 200, '戻る');
+    // backbutton.setFontSize(32).setColor('#ffffff').setOrigin(0.5).setPadding(6).setInteractive();
+    const backButton = new Button(windowConfig.width/2, windowConfig.height/2 + 200, '戻る', this);
   }
 
   /**

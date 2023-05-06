@@ -10,7 +10,6 @@ export function checkHit(x : number, y : number, boxCollision: BoxCollision) {
   const checkY: boolean = boxCollision.y <= y && y <= boxCollision.y + boxCollision.height
 
   if (checkX && checkY){
-    console.log('touch object')
     return true
   }
   else{
